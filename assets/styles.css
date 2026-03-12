@@ -9,7 +9,23 @@
   --retro-red: #d32f2f;
   --retro-white: #ffffff;
   --retro-shadow: rgba(42, 42, 42, 0.3);
+  --retro-border: #e0e0e0;
+  --retro-border-soft: #eee;
+  --retro-muted: #a0a0a0;
   --retro-letter-spacing: 2px;
+}
+
+/* Dark theme overrides */
+[data-theme="dark"] {
+  --retro-dark: #f0f0f0;
+  --retro-grey: #c8c8c8;
+  --retro-light: #1d1d1d;
+  --retro-red: #ff4d4d;
+  --retro-white: #141414;
+  --retro-shadow: rgba(0, 0, 0, 0.55);
+  --retro-border: #2a2a2a;
+  --retro-border-soft: #242424;
+  --retro-muted: #8b8b8b;
 }
 
 /* Global styles */
@@ -81,6 +97,36 @@ h6 {
   color: var(--retro-red);
 }
 
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.theme-toggle {
+  border: 2px solid var(--retro-red);
+  background: var(--retro-white);
+  color: var(--retro-red);
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 3px 0 #b71c1c;
+}
+
+.theme-toggle:hover {
+  background: var(--retro-red);
+  color: var(--retro-white);
+}
+
+.theme-toggle:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #b71c1c;
+}
+
 /* Main title styling */
 .main-title {
   text-align: center;
@@ -144,7 +190,7 @@ h6 {
 
 .sidebar-widget {
   background: var(--retro-light);
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--retro-border);
   border-radius: 12px;
   padding: 1.5rem;
 }
@@ -165,7 +211,7 @@ h6 {
 }
 
 .category-list li {
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--retro-border);
   padding: 0.5rem 0;
 }
 
@@ -208,7 +254,7 @@ h6 {
   border-radius: 20px;
   text-decoration: none;
   font-size: 0.8rem;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--retro-border);
   transition: all 0.2s ease;
 }
 
@@ -226,7 +272,7 @@ h6 {
 
 .topic-item {
   background: var(--retro-light);
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--retro-border);
   border-radius: 12px;
   padding: 1.5rem;
   margin-bottom: 1rem;
@@ -256,7 +302,7 @@ h6 {
 .contact-form-section {
   margin: 2rem 0;
   background: var(--retro-light);
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--retro-border);
   border-radius: 12px;
   padding: 2rem;
 }
@@ -296,11 +342,12 @@ h6 {
 .form-group textarea {
   font-family: 'Inter', sans-serif;
   padding: 0.8rem;
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--retro-border);
   border-radius: 6px;
   font-size: 0.9rem;
   transition: border-color 0.2s ease;
   background: var(--retro-white);
+  color: var(--retro-grey);
 }
 
 .form-group input:focus,
@@ -504,8 +551,8 @@ h6 {
 /* Gaming Hints Section */
 .hints-section {
   background: var(--retro-light);
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
+  border-top: 1px solid var(--retro-border-soft);
+  border-bottom: 1px solid var(--retro-border-soft);
   margin-top: 4rem;
   padding: 4rem 0;
 }
@@ -542,7 +589,7 @@ h6 {
 
 .hint-card {
   background: var(--retro-white);
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--retro-border);
   border-radius: 12px;
   padding: 2rem 1.5rem;
   text-align: center;
@@ -620,7 +667,7 @@ h6 {
   padding: 1.5rem;
   background: var(--retro-light);
   border-radius: 12px;
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--retro-border);
   transition: all 0.3s ease;
 }
 
@@ -683,7 +730,7 @@ h6 {
 
 /* Footer Styling */
 .footer {
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--retro-border-soft);
   background: var(--retro-light);
   color: var(--retro-dark);
   margin-top: 0;
@@ -746,14 +793,14 @@ h6 {
 }
 
 .footer-bottom {
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--retro-border-soft);
   padding: 1.5rem 2rem;
   text-align: center;
 }
 
 .footer-bottom p {
   font-family: "Inter", sans-serif;
-  color: #a0a0a0;
+  color: var(--retro-muted);
   margin: 0;
   font-size: 0.9rem;
 }
@@ -767,6 +814,11 @@ h6 {
 
   .nav-links {
     gap: 1rem;
+  }
+
+  .nav-actions {
+    width: 100%;
+    justify-content: center;
   }
 
   .main-title h1 {
