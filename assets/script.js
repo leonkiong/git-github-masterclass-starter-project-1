@@ -27,4 +27,19 @@
     localStorage.setItem(STORAGE_KEY, nextTheme);
     applyTheme(nextTheme);
   });
+  fetch('/.environment')
+  .then((response) => response.text())
+  .then((env) => {
+    const environment = env.trim();
+
+    if (environment === 'staging') {
+      const banner = document.createElement('div');
+      banner.textContent = 'STAGING SITE';
+      banner.className = 'staging-banner';
+      document.body.prepend(banner);
+    }
+  })
+  .catch((error) => {
+    console.error('Could not load environment file:', error);
+  });
 })();
