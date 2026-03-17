@@ -3,34 +3,20 @@ name: Deploy to DigitalOcean Droplet
 on:
   push:
     branches:
-      - main
       - staging
     paths:
       - "*.html"
       - "assets/**"
       - ".github/workflows/deploy.yml"
+  workflow_dispatch:
 
 concurrency:
   group: deploy-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  deploy-production:
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Deploy production over SSH
-        uses: appleboy/ssh-action@v1.2.2
-        with:
-          host: ${{ secrets.DROPLET_HOST }}
-          username: ${{ secrets.DROPLET_USER }}
-          key: ${{ secrets.DROPLET_SSH_KEY }}
-          script: |
-            ~/deploy-from-github.sh
-
   deploy-staging:
-    if: github.ref == 'refs/heads/staging'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/staging'
     runs-on: ubuntu-latest
 
     steps:
@@ -42,3 +28,17 @@ jobs:
           key: ${{ secrets.DROPLET_SSH_KEY }}
           script: |
             ~/deploy-staging-from-github.sh
+
+  deploy-production:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy production over SSH
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: ${{ secrets.DROPLET_HOST }}
+          username: ${{ secrets.DROPLET_USER }}
+          key: ${{ secrets.DROPLET_SSH_KEY }}
+          script: |
+            ~/deploy-from-github.sh
