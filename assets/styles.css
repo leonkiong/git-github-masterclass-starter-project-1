@@ -13,6 +13,9 @@
   --retro-border-soft: #eee;
   --retro-muted: #a0a0a0;
   --retro-letter-spacing: 2px;
+  --staging-banner-bg: #f9d65c;
+  --staging-banner-text: #1a1a1a;
+  --staging-banner-border: #111;
 }
 
 /* Dark theme overrides */
@@ -26,6 +29,9 @@
   --retro-border: #2a2a2a;
   --retro-border-soft: #242424;
   --retro-muted: #8b8b8b;
+  --staging-banner-bg: #3b2f00;
+  --staging-banner-text: #f9d65c;
+  --staging-banner-border: #f9d65c;
 }
 
 /* Global styles */
@@ -57,6 +63,17 @@ h6 {
 .navbar {
   background: var(--retro-white);
   border-bottom: 3px solid var(--retro-red);
+}
+
+.staging-banner {
+  background: var(--staging-banner-bg);
+  color: var(--staging-banner-text);
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.6rem 1rem;
+  border-bottom: 2px solid var(--staging-banner-border);
 }
 
 .nav-container {
